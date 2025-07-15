@@ -2,7 +2,7 @@ version: "3.4"
 services:
   nginx:
     build: './docker/nginx/'
-    container_name: container-nginx
+    container_name: container_nginx
     depends_on:
       - php
       - mysql
@@ -16,7 +16,7 @@ services:
   php:
     build:
       context: './docker/php/'
-    container_name: container-php
+    container_name: container_php
     networks:
       - backend
     volumes:
@@ -33,7 +33,7 @@ services:
     ]
     ports:
       - '${DB_CONTAINER_PORT}:3306'
-    container_name: container-mysql
+    container_name: container_mysql
     networks:
       - backend
     volumes:
@@ -45,7 +45,7 @@ services:
       MYSQL_ROOT_PASSWORD: '${DB_ROOT_PASSWORD}'
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: container-phpmyadmin
+    container_name: container_phpmyadmin
     environment:
       - PMA_ARBITRARY=10
       - PMA_HOST=mysql
